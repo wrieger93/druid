@@ -1,0 +1,6 @@
+[package]
+name = "druid"
+version = "0.1.0"
+authors = ["Billy Rieger <wrieger93@gmail.com>"]
+
+[dependencies]
