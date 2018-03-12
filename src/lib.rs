@@ -10,34 +10,46 @@ pub enum Ability {
     Charisma,
 }
 
+#[derive(Copy, Clone, Debug, Eq, Ord, PartialEq, PartialOrd)]
+pub enum Alignment {
+    LawfulGood,
+    NeutralGood,
+    ChaoticGood,
+    LawfulNeutral,
+    Neutral,
+    ChaoticNeutral,
+    LawfulEvil,
+    NeutralEvil,
+    ChaoticEvil,
+    Unaligned,
+}
+
 impl Ability {
-    pub fn skills(&self) -> impl Iterator<Item = Skill> {
+    pub fn skills(&self) -> &[Skill] {
         match *self {
-            Ability::Strength => vec![Skill::Athletics].into_iter(),
-            Ability::Dexterity => {
-                vec![Skill::Acrobatics, Skill::SleightOfHand, Skill::Stealth].into_iter()
-            }
-            Ability::Constitution => vec![].into_iter(),
-            Ability::Intelligence => vec![
+            Ability::Strength => &[Skill::Athletics],
+            Ability::Dexterity => &[Skill::Acrobatics, Skill::SleightOfHand, Skill::Stealth],
+            Ability::Constitution => &[],
+            Ability::Intelligence => &[
                 Skill::Arcana,
                 Skill::History,
                 Skill::Investigation,
                 Skill::Nature,
                 Skill::Religion,
-            ].into_iter(),
-            Ability::Wisdom => vec![
+            ],
+            Ability::Wisdom => &[
                 Skill::AnimalHandling,
                 Skill::Insight,
                 Skill::Medicine,
                 Skill::Perception,
                 Skill::Survival,
-            ].into_iter(),
-            Ability::Charisma => vec![
+            ],
+            Ability::Charisma => &[
                 Skill::Deception,
                 Skill::Intimidation,
                 Skill::Performance,
                 Skill::Persuasion,
-            ].into_iter(),
+            ],
         }
     }
 }
